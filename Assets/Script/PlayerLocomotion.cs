@@ -41,6 +41,8 @@ namespace SG
         public float backwardDistance = 1f;
         [SerializeField]
         float fallingSpeed = 45;
+        [SerializeField]
+        float jumpForce = 50;
 
         void Start()
         {   
@@ -251,6 +253,28 @@ namespace SG
         }
 
         #endregion
+
+        public void HandleJumping()
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            if (inputHandler.jump_Input)
+            {
+                if (inputHandler.moveAmount > 0)
+                {
+                    moveDirection = cameraObject.forward * inputHandler.vertical;
+                    moveDirection += cameraObject.right * inputHandler.horizontal;
+                    animatorHandler.PlayTargetAnimation("Jump", true);
+                    moveDirection.y = 0;
+                    Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+                    myTransform.rotation = jumpRotation;
+
+                    // Apply jump force to the Rigidbody
+                    rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                }
+            }
+        }
 
     }
 }

@@ -66,5 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e0db4a21cf7104ebd0dbf7484b7c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponDamage: 25
+  currentWeaponDamage: 10
   healthbar: {fileID: 0}

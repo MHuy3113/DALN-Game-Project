@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,12 +12,20 @@ namespace SG
         public int maxHealth;
         public int currentHealth;
 
-        public HealthBar healthbar;
+
+        public int staminaLevel = 10;
+        public int maxStamina;
+        public int currentStamina;
+
+        public HealthBar healthBar;
+        public StaminaBar staminaBar;
 
         AnimatorHandler animatorHandler;
 
         private void Awake()
         {
+            healthBar = FindAnyObjectByType<HealthBar>();
+            staminaBar = FindAnyObjectByType<StaminaBar>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
 
         }
@@ -24,7 +33,13 @@ namespace SG
         {
             maxHealth = SetMaxHealthFromHealthLevel();
             currentHealth = maxHealth;
-            healthbar.SetMaxHealth(maxHealth);
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetCurrentHealth(currentHealth);
+
+            maxStamina = SetMaxStaminaFromStaminaLevel();
+            currentStamina = maxStamina;
+            staminaBar.SetMaxStamina(maxStamina);
+            staminaBar.SetCurrentStamina(currentStamina);
         }
 
         private int SetMaxHealthFromHealthLevel()
@@ -33,11 +48,18 @@ namespace SG
             return maxHealth;
         }
         
+        private int SetMaxStaminaFromStaminaLevel()
+        {
+            
+            maxStamina = staminaLevel * 10;
+            return maxStamina;
+        }
+
         public void TakeDamage(int damage)
         {
             currentHealth = currentHealth - damage;
 
-            healthbar.SetCurrentHealth(currentHealth);
+            healthBar.SetCurrentHealth(currentHealth);
 
             animatorHandler.PlayTargetAnimation("Damage_01", true);
 
@@ -49,5 +71,10 @@ namespace SG
             }
         }   
     
+        public void TakeStaminaDamage(int damage)
+        {
+            currentStamina = currentStamina - damage;
+            staminaBar.SetCurrentStamina(currentStamina);
+        }
     }  
 }
