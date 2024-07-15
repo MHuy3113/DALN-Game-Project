@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class DecideState : State
 {
@@ -9,21 +8,29 @@ public class DecideState : State
     private void Awake() {
         _stateMachine = GetComponent<StateMachine>();
     }
+
     public override void Enter() {
-        print("Start Decide");
+        Debug.Log("Start Decide");
+    }
+
+    public override void Exit() {
+        Debug.Log("Exit Decide");
     }
     public override void Tick() {
-        print("Exit Decide");
-        WaitChangeState(2f);
-        _stateMachine.ChangeState<PatrolState>();
-    }
-    public override void Exit() {
-        print("In Decide");
-
-    }
+    Debug.Log("Executing Decide logic");
     
-    IEnumerator WaitChangeState(float time) {
-        yield return new WaitForSeconds(time);
+    int id = Random.Range(0, 3);
+    switch (id)
+    {
+        case 0:
+            _stateMachine.ChangeState<PatrolState>();
+            break;
+        case 1:
+            _stateMachine.ChangeState<AttackState>();
+            break;
+        case 2:
+            _stateMachine.ChangeState<IdleState>();
+            break;
     }
-
+    }
 }

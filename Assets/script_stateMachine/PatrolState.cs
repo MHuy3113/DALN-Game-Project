@@ -5,8 +5,8 @@ using UnityEngine;
 public class PatrolState : State
 {
     private StateMachine _stateMachine;
-    private Vector3 _patrolPoint;
-    private float _patrolSpeed = 2f;
+    private Vector3 _currentPatrolPoint;
+    private float _patrolPointReachedThreshold = 1.0f;
 
     private void Awake() {
         _stateMachine = GetComponent<StateMachine>();
@@ -14,45 +14,34 @@ public class PatrolState : State
 
     public override void Enter() {
         Debug.Log("Entering Patrol State");
-        _patrolPoint = GetRandomPatrolPoint();
+        _currentPatrolPoint = GetRandomPatrolPoint();
     }
 
     public override void Tick() {
         Debug.Log("Executing Patrol State logic");
-        Patrol();
-
-        if (DetectPlayer()) {
+        MoveTowardsPatrolPoint();
+        if (Vector3.Distance(transform.position, _currentPatrolPoint) <= _patrolPointReachedThreshold) {
+            Debug.Log("Reached patrol point");
             _stateMachine.ChangeState<AttackState>();
-        }
+        }   
     }
 
     public override void Exit() {
         Debug.Log("Exiting Patrol State");
+        _stateMachine.ChangeState<AttackState>();
     }
 
+    private void MoveTowardsPatrolPoint() {
+        transform.position = Vector3.MoveTowards(transform.position, _currentPatrolPoint, Time.deltaTime * 3.0f);
+        waitPatrol();
+    }
     private Vector3 GetRandomPatrolPoint() {
-        return new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        float randomX = Random.Range(-10.0f, 10.0f);
+        float randomZ = Random.Range(-10.0f, 10.0f);
+        return new Vector3(randomX, transform.position.y, randomZ);
     }
-
-    private void Patrol() {
-        transform.position = Vector3.MoveTowards(transform.position, _patrolPoint, _patrolSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, _patrolPoint) > 0.5f) {
-            DetectPlayer();
-        }
-    }
-
-    private bool DetectPlayer() {
-        float detectionRange = 5f;
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRange);
-        foreach (var hitCollider in hitColliders) {
-            if (hitCollider.CompareTag("Player")) {
-                return true;
-            }
-        }
-        return false;
-    }
-    IEnumerator WaitChangeState(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
+    private IEnumerator waitPatrol() {
+        yield return new WaitForSeconds(2);
+        _stateMachine.ChangeState<AttackState>();
     }
 }

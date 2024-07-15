@@ -12,18 +12,19 @@ public class IdleState : State
 
     public override void Enter() {
         Debug.Log("Entering Idle State");
+        Idle();
     }
 
     public override void Tick() { 
         Debug.Log("Executing Idle State logic");
-        StartCoroutine(WaitChangeState(2f));
-        _stateMachine.ChangeState<PatrolState>();
+        _stateMachine.ChangeState<DecideState>();
     }
 
     public override void Exit() {
         Debug.Log("Exiting Idle State");
     }
-    IEnumerator WaitChangeState(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
+    private IEnumerator Idle() {
+        yield return new WaitForSeconds(2);
+        _stateMachine.ChangeState<AttackState>();
     }
 }
