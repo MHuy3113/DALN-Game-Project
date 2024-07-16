@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010f711fbe9c114eb312b4a02a98e92, type: 3}
+  m_Name: Heal Player
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: 866e60936b252c5468f0d324f3ba7ae5, type: 3}
+  itemName: Heal Player
+  spellWarmUpFX: {fileID: 1309695686809489341, guid: c4dc3a2e7eadb3e449833f1539cb56c6, type: 3}
+  spellCastFX: {fileID: 3558929101845407334, guid: ab283e4c73419924095390a7c570ecbe, type: 3}
+  spellAnimation: Heal_1
+  isFaithSpell: 1
+  isMagicSpell: 0
+  isPyroSpell: 0
+  spellDescription: 
+  healAmount: 25
