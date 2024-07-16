@@ -10,7 +10,7 @@ namespace SG
         public int maxHealth;
         public int currentHealth;
         public HealthBar healthbar;
-
+        public GameObject gameObject;
         Animator animator;
 
         private void Awake()
@@ -42,10 +42,18 @@ namespace SG
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
+                OnDestroy();
                 animator.Play("Dead_01");
                 //Handle Player Death
             }
         }   
-    
-    }  
+        void OnDestroy()
+        {
+            if (currentHealth == 0)
+            {
+                gameObject.SetActive(false);
+            }
+        
+}  
+    }
 }

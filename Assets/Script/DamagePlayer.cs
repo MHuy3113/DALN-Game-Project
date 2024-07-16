@@ -10,11 +10,16 @@ namespace SG
 
         private void OnTriggerEnter (Collider other)
         {
+            StartCoroutine(DamagePlayer());
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
             if (playerStats != null)
             {
                 playerStats.TakeDamage(damage);
             }
         }
+    }
+    IEnumerator DamagePlayer()
+    {
+        yield return new WaitForSeconds(2);
     }
 }
