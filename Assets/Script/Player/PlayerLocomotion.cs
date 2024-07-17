@@ -7,7 +7,9 @@ namespace SG
 {
     public class PlayerLocomotion: MonoBehaviour
     {
+        CameraHandler cameraHandler;
         PlayerManager playerManager;
+        PlayerStats playerStats;
         Transform cameraObject;
         InputHandler inputHandler;
         public Vector3 moveDirection;
@@ -44,15 +46,27 @@ namespace SG
         [SerializeField]
         float jumpForce = 50;
 
+        [Header("Stamina Costs")]
+        [SerializeField]
+        int rollStaminaCost = 15;
+        int backstepStaminaCost = 12;
+        int  sprintStaminaCost = 1;
+
         public CapsuleCollider characterCollider;
         public CapsuleCollider characterCollisionBlockerCollider;
 
-        void Start()
-        {   
+        private void Awake()
+        {
+            cameraHandler = FindObjectOfType<CameraHandler>();
             playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            playerStats = GetComponent<PlayerStats>();
+        }
+        void Start()
+        {   
+            
             cameraObject = Camera.main.transform;
             myTransform = transform;
             animatorHandler.Initialize();
@@ -82,11 +96,14 @@ namespace SG
             moveDirection.y = 0;
 
             float speed = movementSpeed;
-            if(inputHandler.sprintFlag)
+            if(inputHandler.sprintFlag && inputHandler.moveAmount > 0.5)
             {
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
+                //playerStats.TakeStaminaDamage(sprintStaminaCost);
+                //Tạm không sử dụng dòng này vì có vẻ như thay vì chạy theo s
+                //hoặc do cách gọi nào đó mà stamina hao rất nhanh
             }
             else
             {
@@ -127,9 +144,11 @@ namespace SG
 
         public void HandleRollingAndSprinting(float delta)
         {
-            Debug.Log("HandleRollingAndSprinting called. RollFlag: " + inputHandler.rollFlag);
             
             if (animatorHandler.anim.GetBool("isInteracting"))
+                return;
+            
+            if (playerStats.currentStamina <= 0)
                 return;
 
             if (inputHandler.rollFlag)
@@ -143,10 +162,12 @@ namespace SG
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = rollRotation;
+                    playerStats.TakeStaminaDamage(rollStaminaCost);
                 }
                 else
                 {
                     animatorHandler.PlayTargetAnimation("Backward", true);
+                    playerStats.TakeStaminaDamage(backstepStaminaCost);
 
                      // Di chuyển nhân vật ngược lại theo hướng camera
                     Vector3 backwardMovement = -myTransform.forward * backwardDistance;
@@ -261,6 +282,9 @@ namespace SG
         public void HandleJumping()
         {
             if (playerManager.isInteracting)
+                return;
+            
+            if (playerStats.currentStamina <= 0)
                 return;
 
             if (inputHandler.jump_Input)

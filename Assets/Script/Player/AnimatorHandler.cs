@@ -7,6 +7,7 @@ namespace SG
     public class AnimatorHandler: AnimatorManager
     {
         PlayerManager playerManager;
+        PlayerStats playerStats;
 
         public InputHandler inputHandler;
         public PlayerLocomotion playerLocomotion;
@@ -17,6 +18,7 @@ namespace SG
         public void Initialize()
         {
             playerManager = GetComponentInParent<PlayerManager>();
+            playerStats = GetComponentInParent<PlayerStats>(); 
             anim = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
@@ -109,6 +111,23 @@ namespace SG
             anim.SetBool ("canDoCombo", false);
         }
         
+        
+        public void EnablelsInvulnerable()
+        {
+            anim.SetBool ("isInvulnerable", true);
+        }
+
+        public void DisableIsInvulnerable()
+        {
+            anim.SetBool ("isInvulnerable", false);
+        }
+
+        public override void TakeCriticalDamageAnimationEvent()
+        {
+            playerStats.TakeDamageNoAnimation(playerManager.pendingCriticalDamage);
+            playerManager.pendingCriticalDamage = 0;
+        }
+
         private void OnAnimatorMove()
         {
             if (playerManager.isInteracting == false)
@@ -118,16 +137,6 @@ namespace SG
             Vector3 deltaPosition = anim.deltaPosition; deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.rigidbody. velocity = velocity;
-        }
-
-        public void EnablelsInvulnerable()
-        {
-            anim.SetBool ("isInvulnerable", true);
-        }
-
-        public void DisableIsInvulnerable()
-        {
-            anim.SetBool ("isInvulnerable", false);
         }
 
     }

@@ -6,7 +6,7 @@ namespace SG
 {
     public class Interactable: MonoBehaviour
     {
-        public float radius = 0.6f;
+        public float radius = 1f;
         public string interactbleText;
 
         private void OnDrawGizmosSelected()

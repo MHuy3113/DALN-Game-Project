@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e006a1e1cd3e644926a0fb2cfa9044, type: 3}
   m_Name: Spear
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: aba2303e2865bf84bb09cdc78df5b1f5, type: 3}
+  itemIcon: {fileID: 21300000, guid: 15241c4bc95ccf244b06e4b4b0e63400, type: 3}
   itemName: Spear
   modelPrefab: {fileID: 1428027385097578126, guid: 93aed1b59f07d7148a64c22bb40fee79, type: 3}
   isUnarmed: 0
+  baseDamage: 15
+  criticalDamageMultiplier: 2
   right_hand_idle: Right_Arm_Idle_01
   left_hand_idle: Left_Arm_Idle_01
   th_idle: TH_Idle_Sword
