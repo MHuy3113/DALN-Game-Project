@@ -7,7 +7,7 @@ namespace SG
     public class EnemyStats : CharacterStats
     {
         public HealthBar healthbar;
-
+        public GameObject gameObject;
         Animator animator;
         public GameObject gameObject;
 
@@ -42,6 +42,7 @@ namespace SG
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
+                OnDestroy();
                 animator.Play("Dead_01");
                 isDead = true;
                 DestroyEnemy();
@@ -50,6 +51,13 @@ namespace SG
         public void DestroyEnemy() {
             gameObject.SetActive(false);
         }   
-    
-    }  
+        void OnDestroy()
+        {
+            if (currentHealth == 0)
+            {
+                gameObject.SetActive(false);
+            }
+        
+}  
+    }
 }
