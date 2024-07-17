@@ -1,39 +1,19 @@
 // using System.Collections;
 // using System.Collections.Generic;
 // using UnityEngine;
-
+// using SG; // Add this line to use the SG namespace where PlayerStats is defined
+// [[RequireComponent(typeof(MeshCollider))]]
 // public class enemyState_boss : MonoBehaviour
 // {
-//         public int healthLevel = 10;
-//         public int maxHealth;
-//         public int currentHealth;
-//         public HealthBar healthbar;
-
-//         Animator animator;
-
-//         void Start()
+//     public int damage = 25;
+//     public PlayerStats playerStats;
+//     private void OnTriggerEnter(Collider other)
+//     {
+//         PlayerStats playerStats = other.GetComponent<PlayerStats>();
+//         if (playerStats != null)
 //         {
-//             maxHealth = SetMaxHealthFromHealthLevel();
-//             currentHealth = maxHealth;
-//             healthbar.SetMaxHealth(maxHealth);
+//             playerStats.TakeDamage(damage);
+//             Debug.Log("Player has taken damage!");
 //         }
-
-//         private int SetMaxHealthFromHealthLevel()
-//         {
-//             maxHealth = healthLevel * 10;
-//             return maxHealth;
-//         }
-        
-//         public void TakeDamage(int damage)
-//         {
-//             currentHealth = currentHealth - damage;
-            
-//             healthbar.SetCurrentHealth(currentHealth);
-
-//             if (currentHealth <= 0)
-//             {
-//                 currentHealth = 0;
-//                 //Handle Player Death
-//             }
-//         } 
+//     }
 // }
