@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29518,6 +29517,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3787041338580072727, guid: 1c7f34c17d4820242ba96a6d80518df3, type: 3}
+      propertyPath: gameObject
+      value: 
+      objectReference: {fileID: 941256148}
     - target: {fileID: 3787041338580072727, guid: 1c7f34c17d4820242ba96a6d80518df3, type: 3}
       propertyPath: maxStamina
       value: 0
