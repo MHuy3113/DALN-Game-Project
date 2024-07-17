@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5634,6 +5634,50 @@ MonoBehaviour:
   radius: 1
   interactbleText: Pick Up Weapon
   weapon: {fileID: 11400000, guid: 49509e616153054449d05ed5f472b522, type: 2}
+--- !u!1 &267412378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 267412379}
+  - component: {fileID: 267412380}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &267412379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267412378}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.55, y: 1.0799999, z: -22.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &267412380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267412378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f371c3350260c45bb524d30b60df2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &298963114
 GameObject:
   m_ObjectHideFlags: 0
@@ -29519,6 +29563,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3787041338580072727, guid: 1c7f34c17d4820242ba96a6d80518df3, type: 3}
+      propertyPath: gameObject
+      value: 
+      objectReference: {fileID: 941256148}
+    - target: {fileID: 3787041338580072727, guid: 1c7f34c17d4820242ba96a6d80518df3, type: 3}
       propertyPath: maxStamina
       value: 0
       objectReference: {fileID: 0}
@@ -30117,3 +30165,4 @@ SceneRoots:
   - {fileID: 406705336}
   - {fileID: 1960176563}
   - {fileID: 6231919215244267717}
+  - {fileID: 267412379}

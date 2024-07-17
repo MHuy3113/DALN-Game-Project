@@ -9,6 +9,7 @@ namespace SG
         public HealthBar healthbar;
 
         Animator animator;
+        public GameObject gameObject;
 
         private void Awake()
         {
@@ -43,7 +44,11 @@ namespace SG
                 currentHealth = 0;
                 animator.Play("Dead_01");
                 isDead = true;
+                DestroyEnemy();
             }
+        }
+        public void DestroyEnemy() {
+            gameObject.SetActive(false);
         }   
     
     }  
