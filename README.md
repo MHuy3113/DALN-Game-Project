@@ -13,3 +13,6 @@ Di chuyển bằng AWSD, chuột trái light atk, chuột phải heavy atk. Hai 
 1 Chút UI cho inventory bằng cách bấm Esc và dùng chuột click chọn, cơ chế lock on bằng cách bấm F ( chuyển mục tiêu bằng cách dùng 1,2) lên NPC, có thể bấm Y để cầm vũ khí tay phải bằng 2 tay, và có thể gán đòn đánh 2 tay cho vũ khí. Sau khi chuyển vũ khí tay phải sang 2 tay thì vũ khí tay trái sẽ được đeo sau lưng
 
 NPC di chuyển và target Player, có thể đánh player. Player giờ roll có thể được invulnerability, có thể hồi máu bằng cách cầm mace ở tay phải
+
+
+Do chia nhiều nhánh đến lúc cuối mới merge code của các bạn lại nên contributer cảu bọn em không hiện đầy đủ.
