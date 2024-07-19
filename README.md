@@ -15,4 +15,4 @@ Di chuyển bằng AWSD, chuột trái light atk, chuột phải heavy atk. Hai 
 NPC di chuyển và target Player, có thể đánh player. Player giờ roll có thể được invulnerability, có thể hồi máu bằng cách cầm mace ở tay phải
 
 
-Do chia nhiều nhánh đến lúc cuối mới merge code của các bạn lại nên contributer cảu bọn em không hiện đầy đủ.
+Do chia nhiều nhánh đến lúc cuối mới merge code của các bạn lại nên contributer của bọn em không hiện đầy đủ.
